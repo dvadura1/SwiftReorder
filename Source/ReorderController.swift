@@ -80,6 +80,7 @@ public protocol TableViewReorderDelegate: class {
      */
     func tableViewDidFinishReordering(_ tableView: UITableView, from initialSourceIndexPath: IndexPath, to finalDestinationIndexPath: IndexPath)
     
+    func tableViewWillSnapshot(_ tableView: UITableView, rowAt indexPath: IndexPath)
 }
 
 public extension TableViewReorderDelegate {
@@ -98,6 +99,8 @@ public extension TableViewReorderDelegate {
     func tableViewDidFinishReordering(_ tableView: UITableView, from initialSourceIndexPath: IndexPath, to finalDestinationIndexPath:IndexPath) {
     }
     
+    func tableViewWillSnapshot(_ tableView: UITableView, rowAt indexPath: IndexPath) {
+    }
 }
 
 // MARK: - ReorderController
@@ -155,6 +158,13 @@ public class ReorderController: NSObject {
     
     /// Whether or not autoscrolling is enabled
     public var autoScrollEnabled = true
+    
+    // Auto scroll properties
+    public var autoScrollThreshold: CGFloat = 30
+    
+    public var autoScrollMinVelocity: CGFloat = 60
+    
+    public var autoScrollMaxVelocity: CGFloat = 280
     
     /**
      Returns a `UITableViewCell` if the table view should display a spacer cell at the given index path.
@@ -236,6 +246,7 @@ public class ReorderController: NSObject {
             delegate.tableView(tableView, canReorderRowAt: sourceRow)
         else { return }
         
+        delegate.tableViewWillSnapshot(tableView, rowAt: sourceRow)
         createSnapshotViewForCell(at: sourceRow)
         animateSnapshotViewIn()
         activateAutoScrollDisplayLink()
