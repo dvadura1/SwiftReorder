@@ -33,12 +33,17 @@ extension ReorderController {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         let cellFrame = tableView.convert(cell.frame, to: superview)
 
-        cell.contentView.backgroundColor = backgroundColor
+        // Save original background color
+        let originalColor = cell.contentView.backgroundColor
+        cell.contentView.backgroundColor = backgroundColor ?? originalColor
         
         UIGraphicsBeginImageContextWithOptions(cell.bounds.size, false, 0)
         cell.layer.render(in: UIGraphicsGetCurrentContext()!)
         let cellImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
+        // Revert back to original background color
+        cell.contentView.backgroundColor = originalColor
         
         let view = UIImageView(image: cellImage)
         view.frame = cellFrame
