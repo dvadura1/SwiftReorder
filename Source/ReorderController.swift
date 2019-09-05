@@ -79,8 +79,6 @@ public protocol TableViewReorderDelegate: class {
      - Parameter finalDestinationIndexPath: The final index path of the selected row.
      */
     func tableViewDidFinishReordering(_ tableView: UITableView, from initialSourceIndexPath: IndexPath, to finalDestinationIndexPath: IndexPath)
-    
-    func tableViewWillSnapshot(_ tableView: UITableView, rowAt indexPath: IndexPath)
 }
 
 public extension TableViewReorderDelegate {
@@ -97,9 +95,6 @@ public extension TableViewReorderDelegate {
     }
     
     func tableViewDidFinishReordering(_ tableView: UITableView, from initialSourceIndexPath: IndexPath, to finalDestinationIndexPath:IndexPath) {
-    }
-    
-    func tableViewWillSnapshot(_ tableView: UITableView, rowAt indexPath: IndexPath) {
     }
 }
 
@@ -140,6 +135,9 @@ public class ReorderController: NSObject {
     
     /// The scale factor for the selected cell.
     public var cellScale: CGFloat = 1
+    
+    /// Background color for the selected cell
+    public var backgroundColor: UIColor?
     
     /// The shadow color for the selected cell.
     public var shadowColor: UIColor = .black
@@ -246,7 +244,6 @@ public class ReorderController: NSObject {
             delegate.tableView(tableView, canReorderRowAt: sourceRow)
         else { return }
         
-        delegate.tableViewWillSnapshot(tableView, rowAt: sourceRow)
         createSnapshotViewForCell(at: sourceRow)
         animateSnapshotViewIn()
         activateAutoScrollDisplayLink()
