@@ -189,6 +189,18 @@ public class ReorderController: NSObject {
         return nil
     }
     
+    public func cancelReorder() {
+        guard case .reordering(_) = reorderState,
+            let tableView = tableView,
+            tableView.superview != nil
+        else { return }
+        
+        reorderState = .ready(snapshotRow: nil)
+        
+        removeSnapshotView()
+        clearAutoScrollDisplayLink()
+    }
+    
     // MARK: - Internal state
     
     struct ReorderContext {
