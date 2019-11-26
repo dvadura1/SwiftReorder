@@ -10,7 +10,7 @@ import UIKit
 
 extension UITableViewCell {
     
-    var reorderBackgroundView: UIView {
+    public var reorderBackgroundView: UIView {
         return contentView
     }
 }
