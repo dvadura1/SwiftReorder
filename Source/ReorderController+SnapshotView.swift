@@ -35,7 +35,7 @@ extension ReorderController {
 
         // Save original background color
         let originalColor = cell.contentView.backgroundColor
-        cell.contentView.backgroundColor = backgroundColor ?? originalColor
+        cell.reorderBackgroundView.backgroundColor = backgroundColor ?? originalColor
         
         UIGraphicsBeginImageContextWithOptions(cell.bounds.size, false, 0)
         cell.layer.render(in: UIGraphicsGetCurrentContext()!)
@@ -43,7 +43,7 @@ extension ReorderController {
         UIGraphicsEndImageContext()
         
         // Revert back to original background color
-        cell.contentView.backgroundColor = originalColor
+        cell.reorderBackgroundView.backgroundColor = originalColor
         
         let view = UIImageView(image: cellImage)
         view.frame = cellFrame
