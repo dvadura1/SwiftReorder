@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		637623C2238D3C4200969986 /* UITableViewCell+Reorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637623C0238D3B7500969986 /* UITableViewCell+Reorder.swift */; };
+		637623C4238D3CEC00969986 /* UITableViewCell+Reorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637623C3238D3CEC00969986 /* UITableViewCell+Reorder.swift */; };
 		66FC50F11D5EE49D00CFCCCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FC50E81D5EE49D00CFCCCE /* AppDelegate.swift */; };
 		66FC50F21D5EE49D00CFCCCE /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FC50E91D5EE49D00CFCCCE /* BasicViewController.swift */; };
 		66FC50F41D5EE49D00CFCCCE /* EffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FC50EB1D5EE49D00CFCCCE /* EffectsViewController.swift */; };
@@ -52,7 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		637623C0238D3B7500969986 /* UITableViewCell+Reorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Reorder.swift"; sourceTree = "<group>"; };
+		637623C3238D3CEC00969986 /* UITableViewCell+Reorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableViewCell+Reorder.swift"; path = "Source/UITableViewCell+Reorder.swift"; sourceTree = "<group>"; };
 		660256931CE6A5170029CB5F /* SwiftReorderExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftReorderExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66DF25101D8080A000C19289 /* ReorderController+AutoScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ReorderController+AutoScroll.swift"; path = "Source/ReorderController+AutoScroll.swift"; sourceTree = "<group>"; };
 		66DF25111D8080A000C19289 /* ReorderController+DestinationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ReorderController+DestinationRow.swift"; path = "Source/ReorderController+DestinationRow.swift"; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				66FC50FA1D5EE4CA00CFCCCE /* UITableView+Reorder.swift */,
-				637623C0238D3B7500969986 /* UITableViewCell+Reorder.swift */,
+				637623C3238D3CEC00969986 /* UITableViewCell+Reorder.swift */,
 				66FC50FC1D5EE4D600CFCCCE /* ReorderController.swift */,
 				66DF25131D8080A000C19289 /* ReorderController+SnapshotView.swift */,
 				66DF25111D8080A000C19289 /* ReorderController+DestinationRow.swift */,
@@ -283,7 +283,7 @@
 				D9DAD5EA2134668200484E71 /* UITableView+Reorder.swift in Sources */,
 				D9DAD5EF2134668200484E71 /* ReorderController+GestureRecognizer.swift in Sources */,
 				D9DAD5EE2134668200484E71 /* ReorderController+AutoScroll.swift in Sources */,
-				637623C2238D3C4200969986 /* UITableViewCell+Reorder.swift in Sources */,
+				637623C4238D3CEC00969986 /* UITableViewCell+Reorder.swift in Sources */,
 				D9DAD5ED2134668200484E71 /* ReorderController+DestinationRow.swift in Sources */,
 				D9DAD5EC2134668200484E71 /* ReorderController+SnapshotView.swift in Sources */,
 				D9DAD5EB2134668200484E71 /* ReorderController.swift in Sources */,
