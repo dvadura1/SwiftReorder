@@ -260,7 +260,12 @@ public class ReorderController: NSObject {
         animateSnapshotViewIn()
         activateAutoScrollDisplayLink()
         
+        // Save selected row and select after reloading data
+        let indexPath = tableView.indexPathForSelectedRow
         tableView.reloadData()
+        if let indexPath = indexPath {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
         
         let snapshotOffset = (snapshotView?.center.y ?? 0) - touchPosition.y
         
