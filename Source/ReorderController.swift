@@ -79,7 +79,6 @@ public protocol TableViewReorderDelegate: class {
      - Parameter finalDestinationIndexPath: The final index path of the selected row.
      */
     func tableViewDidFinishReordering(_ tableView: UITableView, from initialSourceIndexPath: IndexPath, to finalDestinationIndexPath: IndexPath)
-    
 }
 
 public extension TableViewReorderDelegate {
@@ -97,7 +96,6 @@ public extension TableViewReorderDelegate {
     
     func tableViewDidFinishReordering(_ tableView: UITableView, from initialSourceIndexPath: IndexPath, to finalDestinationIndexPath:IndexPath) {
     }
-    
 }
 
 // MARK: - ReorderController
@@ -138,6 +136,9 @@ public class ReorderController: NSObject {
     /// The scale factor for the selected cell.
     public var cellScale: CGFloat = 1
     
+    /// Background color for the selected cell
+    public var backgroundColor: UIColor?
+    
     /// The shadow color for the selected cell.
     public var shadowColor: UIColor = .black
     
@@ -155,6 +156,13 @@ public class ReorderController: NSObject {
     
     /// Whether or not autoscrolling is enabled
     public var autoScrollEnabled = true
+    
+    // Auto scroll properties
+    public var autoScrollThreshold: CGFloat = 30
+    
+    public var autoScrollMinVelocity: CGFloat = 60
+    
+    public var autoScrollMaxVelocity: CGFloat = 280
     
     /**
      Returns a `UITableViewCell` if the table view should display a spacer cell at the given index path.
@@ -179,6 +187,18 @@ public class ReorderController: NSObject {
             return createSpacerCell()
         }
         return nil
+    }
+    
+    public func cancelReorder() {
+        guard case .reordering(_) = reorderState,
+            let tableView = tableView,
+            tableView.superview != nil
+        else { return }
+        
+        reorderState = .ready(snapshotRow: nil)
+        
+        removeSnapshotView()
+        clearAutoScrollDisplayLink()
     }
     
     // MARK: - Internal state
@@ -240,7 +260,12 @@ public class ReorderController: NSObject {
         animateSnapshotViewIn()
         activateAutoScrollDisplayLink()
         
+        // Save selected row and select after reloading data
+        let indexPath = tableView.indexPathForSelectedRow
         tableView.reloadData()
+        if let indexPath = indexPath {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
         
         let snapshotOffset = (snapshotView?.center.y ?? 0) - touchPosition.y
         

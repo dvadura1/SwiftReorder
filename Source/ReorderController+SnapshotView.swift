@@ -32,7 +32,7 @@ extension ReorderController {
         
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         let cellFrame = tableView.convert(cell.frame, to: superview)
-        
+
         UIGraphicsBeginImageContextWithOptions(cell.bounds.size, false, 0)
         cell.layer.render(in: UIGraphicsGetCurrentContext()!)
         let cellImage = UIGraphicsGetImageFromCurrentImageContext()
