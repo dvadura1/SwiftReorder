@@ -127,6 +127,13 @@ public class ReorderController: NSObject {
         }
     }
     
+    public var isReordering: Bool {
+        if case .reordering = reorderState {
+            return true
+        }
+        return false
+    }
+    
     /// The duration of the cell selection animation.
     public var animationDuration: TimeInterval = 0.2
     
